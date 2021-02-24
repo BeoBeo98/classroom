@@ -18,9 +18,9 @@ class ClassInfoController extends Controller
         return view('classInfo');
     }
 
-    public function show($user)
+    public function show($id_user)
     {
-        $user = User::find($user);
-        return view('information', [ 'user' => $user ]);
+        $id_user = User::find($id_user);
+        return view('information', [ 'user' => $id_user ]);
     }
 }

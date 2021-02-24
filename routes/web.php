@@ -18,9 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/classInfo', 'ClassInfoController@index')->name('classInfo');
 Route::get('/classInfo/{user}', 'ClassInfoController@show')->name('classInfo.show');
 
 Route::get('/changeInfo', 'ChangeInfoController@index')->name('changeInfo');
+
+
+Route::post('/changeInfo','ChangeInfoController@update')->name('formpost.update');
+
 Route::get('/homework', 'HomeworkController@index')->name('homework');
 Route::get('/challenge', 'ChallengeController@index')->name('challenge');

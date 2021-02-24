@@ -1,26 +1,60 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Change your Information</div>
-                <label for="newuser"><b>Your username</b></label>
-                    <div>
-                      <p>{{ Auth::user()->username }}</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
                     </div>
-                <label for="newname"><b>New name</b></label>
-                    <input type="text" placeholder="Enter new name" name="newname">
-                <label for="newpass"><b>New password</b></label>
-                    <input type="password" placeholder="Enter new password" name="newpass">
-                <label for="newemail"><b>New email</b></label>
-                    <input type="text" placeholder="Enter new email" name="newemail">
-                <label for="newphone"><b>New phone number</b></label>
-                    <input type="text" placeholder="Enter new phone" name="newphone"><br><br>
-                <button type="submit">Change</button>
+                @endif
+                <form action="{{route('formpost.update')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div horizontal layout class="form-group" >
+                        <label for="username">Username</label>
+                        <b>{{ Auth::user()->username }}</b>
+                    </div>
+                    <div class="form-group">
+                        <label for="newname">New name</label>
+                        <input type="text" name="name" value="{{Auth::user()->name}}" class="form-control"/>
+                        @error('name')
+                        <small class="form-text text-muted">{{ $message }}</small>
+                        @enderror
+                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="oldpass">Old password</label>--}}
+{{--                        <input type="password" name="oldpass" placeholder="Old password" class="form-control"/>--}}
+{{--                        @error('oldpassword')--}}
+{{--                        <small class="form-text text-muted">{{ $message }}</small>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="newpass">New password</label>
+                        <input type="password" name="password" placeholder="New password" class="form-control"/>
+                        @error('password')
+                        <small class="form-text text-muted">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="newemail">New email</label>
+                        <input type="text" name="email" value="{{Auth::user()->email}}" class="form-control"/>
+{{--                        @error('description')--}}
+{{--                        <small class="form-text text-muted">{{ $message }}</small>--}}
+{{--                        @enderror--}}
+                    </div>
+                    <div class="form-group">
+                        <label for="newphone">New phone</label>
+                        <input type="phone" name="phone" value="{{Auth::user()->phone}}" class="form-control"/>
+{{--                        @error('description')--}}
+{{--                        <small class="form-text text-muted">{{ $message }}</small>--}}
+{{--                        @enderror--}}
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Submit" />
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
-</div>
 @endsection
