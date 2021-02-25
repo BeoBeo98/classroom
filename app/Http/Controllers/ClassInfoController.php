@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClassInfoController extends Controller
 {
@@ -15,7 +16,8 @@ class ClassInfoController extends Controller
 
     public function index()
     {
-        return view('classInfo');
+        $data = DB::table('users')->get();
+        return view('classInfo', ['data' => $data ]);
     }
 
     public function show($id_user)

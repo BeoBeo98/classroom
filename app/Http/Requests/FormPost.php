@@ -29,8 +29,6 @@ class FormPost extends FormRequest
         return [
             'name' => 'required',
             'password'=> 'required',
-//            'email'=> 'required',
-//            'phone' => 'required',
         ];
     }
 

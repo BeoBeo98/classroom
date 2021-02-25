@@ -26,7 +26,6 @@ class ChangeInfoController extends Controller
     public function update(FormPost $request)
     {
         $validated = $request->validated();
-        $validated['slug']=str_slug($request->title);
         DB::table('users')->where('username', Auth::user()->username)->update([ 'name' => $validated['name'], 'password' => Hash::make($validated['password']),
             'email' => $request['email'], 'phone' => $request['phone'] ]);
         return redirect('/home')->with('success', 'Update Success!');
