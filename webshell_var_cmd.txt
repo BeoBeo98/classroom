@@ -1,0 +1,1 @@
+webshell_var_cmd.php?cmd=ls
